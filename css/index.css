@@ -1,0 +1,123 @@
+*{
+	margin:0;
+	padding:0;
+	font-size:14px;
+	font-family:"Microsoft YaHei";
+	list-style:none;
+	color:#000;
+}
+body{
+	font-size:12px;
+	font-family:"Microsoft YaHei";
+	background-color:#fff;
+}
+a{
+	color:#000;
+	text-decoration:none;
+}
+.content{
+	position:relative;
+	margin:0 auto;
+	margin-top:50px;
+	width:100%;
+	height:auto;
+}
+ul.content_ul{
+	position:absolute;
+	left:50%;
+	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	width:95%;
+	height:auto;
+}
+li.content_list{
+	float:left;
+	width:98px;
+	height:100px;
+	font-size:25px;
+	font-weight:700;
+	line-height:100px;
+	text-align:center;
+	color:#fff;
+	background-color:#434A54;
+	border:1px solid #4FC1E9;
+	transition:all 0.5s;
+	cursor:pointer;
+}
+li.content_list:hover{
+	transform:scale(1.2);
+}
+.input{
+	display:block;
+	position:absolute;
+	top:350px;
+	left:50%;
+	transform:translateX(-50%);
+	width:50%;
+	height:50px;
+	background-color:#4FC1E9;
+	border-radius:5px;
+}
+lable{
+	position:absolute;
+	top:-50px;
+	left:50%;
+	transform:translateX(-50%);
+	font-size:25px;
+	font-weight:700;
+	line-height:50px;
+}
+#input_add{
+	display:inline-block;
+	position:absolute;
+	top:5px;
+	left:50%;
+	transform:translateX(-50%);
+	width:98%;
+	height:40px;
+	font-size:35px;
+	line-height:40px;
+	background-color:#fff;
+	border:none;
+	border-radius:3px;
+	outline:none;
+}
+ul.control{
+	position:absolute;
+	top:450px;
+	left:50%;
+	width:80%;
+	height:50px;
+	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	-o-transform:translateX(-50%);
+}
+li.control_list{
+	float:left;
+	margin:0 auto;
+	margin-right:5px;
+	width:calc(25% - 5px);
+	height:50px;
+	font-size:25px;
+	font-weight:700;
+	line-height:50px;
+	text-align:center;
+	color:#fff;
+	background-color:#434A54;
+	border-radius:5px;
+	transition:all 0.5s;
+	cursor:pointer;
+}
+li.control_list:hover{
+	box-shadow:5px 5px 10px #434A54;
+}
+.button_clickchange{
+	animation:button_click 0.4s forwards;
+	animation-direction:alternate;
+}
+@keyframes button_click{
+	0% {transform:scale(1);}
+	50% {transform:scale(0.9);}
+	75% {transform:scale(1.1);}
+	100% {transform:scale(1);}
+}
