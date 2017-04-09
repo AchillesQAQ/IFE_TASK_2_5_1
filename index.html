@@ -15,9 +15,9 @@
 				<li class="content_list">5</li>
 			</ul>
 		</div>
-		<div class="input">
+		<div class="input input_hover">
 			<lable for="input_add">请开始你的表演</lable>
-			<input type="text" name="input_add" id="input_add" placeholder="输入要添加进入队列的数字">
+			<input type="text" name="input_add" id="input_add" placeholder="输入范围10-100的数字，队列元素最多60个" /><span id="prompt">请输入10-100之间的数字！</span>
 		</div>
 		<ul class="control">			
 			<li class="control_list">左侧入</li>
@@ -27,76 +27,104 @@
 		</ul>
 	</body>
 	<script type="text/javascript">
+	
 		window.onload = function(){
 			//获取显示列表
 			var ul_list = document.getElementsByClassName("content_ul")[0];
 			var li_list = document.getElementsByClassName("content_list");
-			var content_list_length = li_list.length;//获取显示列表的长度
+			//获取显示列表的长度		
+			var content_list_length = li_list.length;
 			//获取输入框内容
 			var input_value = document.getElementById("input_add");
 			//获取操作按钮
 			var leftIn = document.getElementsByClassName("control_list")[0];
 			var rightIn = document.getElementsByClassName("control_list")[1];
 			var leftOut = document.getElementsByClassName("control_list")[2];
-			var rightOut = document.getElementsByClassName("control_list")[3];
-			
-			
+			var rightOut = document.getElementsByClassName("control_list")[3];	
+			//获取提示信息
+			var span_content = document.getElementById("prompt");
+			//实时监控输入框
+			input_value.addEventListener("input", myFunction);
+			 function myFunction (event) {
+				if(event.target.value >= 10&&event.target.value <= 100){
+					span_content.innerHTML = "验证通过！";
+				}else{
+					span_content.innerHTML = "请输入10-100之间的数字！";
+				}
+			}		
 			//左侧入
 			leftIn.onclick = function(){
-				addClass(this,'button_clickchange');		
+				//实时获取输入框的值并转化为数字		
 				var input_content = Number(input_value.value);
-				if(input_content != ""&&typeof(input_content) == 'number'&&!isNaN(input_content)){
-					var new_item = document.createElement("li");
-					new_item.className = "content_list";
-					new_item.innerHTML = input_content;
-					ul_list.insertBefore(new_item,ul_list.childNodes[0]);
-					input_value.value = "";
-				}else if(isNaN(input_content)){
-					alert("不输入数字我就爆炸了！");
-					input_value.value = "";
-				}else if(input_content == ""){
-					alert("输入点数字吧！");
-				}				
+				//获取输入框内容长度
+				if(input_content >= 10&&input_content <= 100){
+					//判断若输入内容不为空且输入转换后的类型为数字同时不为NaN时执行下面的函数
+					if(input_content != ""&&typeof(input_content) == 'number'&&!isNaN(input_content)){
+						//队列元素数量最多限制为60个，当超过60个时，添加元素时alert出提示
+						if(document.getElementsByClassName("content_list").length <= 10){
+							var new_item = document.createElement("li");
+							new_item.className = "content_list";
+							new_item.innerHTML = input_content;
+							ul_list.insertBefore(new_item,ul_list.childNodes[0]);
+							input_value.value = "";//清空输入框							
+						}else{
+							alert("超过10个了大神！");
+							input_value.value = "";//清空输入框
+						}											
+					}else if(isNaN(input_content)){
+						alert("不输入数字我就爆炸了！");
+						input_value.value = "";
+					}else if(input_content == ""){
+						alert("输入点数字吧！");
+					}
+				}else{
+					//二次验证
+					alert("请输入10-100之间的数字！");
+				}
+				//提示信息内容复位
+				span_content.innerHTML = "请输入10-100之间的数字！";				
 			}
 			//右侧入
 			rightIn.onclick = function(){
-				addClass(this,'button_clickchange');		
+				//实时获取输入框的值并转化为数字		
 				var input_content = Number(input_value.value);
-				if(input_content != ""&&typeof(input_content) == 'number'&&!isNaN(input_content)){
-					ul_list.innerHTML += "<li class='content_list'>" + input_content + "</li>";
-					input_value.value = "";
-				}else if(isNaN(input_content)){
-					alert("不输入数字我就爆炸了！");
-					input_value.value = "";
-				}else if(input_content == ""){
-					alert("输入点数字吧！");
-				}				
+				//获取输入框内容长度
+				if(input_content >= 10&&input_content <= 100){
+					//判断若输入内容不为空且输入转换后的类型为数字同时不为NaN时执行下面的函数
+					if(input_content != ""&&typeof(input_content) == 'number'&&!isNaN(input_content)){
+						//队列元素数量最多限制为60个，当超过60个时，添加元素时alert出提示
+						if(document.getElementsByClassName("content_list").length <= 10){
+							ul_list.innerHTML += "<li class='content_list'>" + input_content + "</li>";
+							input_value.value = "";							
+						}else{
+							alert("超过10个了大神！");
+							input_value.value = "";//清空输入框
+						}
+						
+					}else if(isNaN(input_content)){
+						alert("不输入数字我就爆炸了！");
+						input_value.value = "";
+					}else if(input_content == ""){
+						alert("输入点数字吧！");
+					}
+				}else{
+					//二次验证
+					alert("请输入10-100之间的数字！");
+				}
+				//提示信息内容复位
+				span_content.innerHTML = "请输入10-100之间的数字！";				
 			}
 			//左侧出
-			leftOut.onclick = function(){
-				addClass(this,'button_clickchange');	
+			leftOut.onclick = function(){	
 				alert(ul_list.children[0].innerText);
 				ul_list.removeChild(ul_list.children[0]);			
 			}
 			//右侧出
-			rightOut.onclick = function(){
-				addClass(this,'button_clickchange');	
+			rightOut.onclick = function(){	
 				alert(ul_list.children[li_list.length-1].innerText);
 				ul_list.removeChild(ul_list.children[li_list.length-1]);			
 			}
-			//指令点击效果
-			leftOut.onmouseout = function(){
-				removeClass(this,'button_clickchange');
-			}
-			leftIn.onmouseout = function(){
-				removeClass(this,'button_clickchange');
-			}
-			rightOut.onmouseout = function(){
-				removeClass(this,'button_clickchange');
-			}			
-			rightIn.onmouseout = function(){
-				removeClass(this,'button_clickchange');
-			}
+
 			//点击指定元素则被点击元素被删除（运用事件委托法）
 			document.getElementsByClassName("content_ul")[0].onclick = function(ev){
 				var ev = ev || window.event;//
@@ -105,17 +133,8 @@
 					target.parentNode.removeChild(target);
 				}
 			}
+			
 		}		
-		//js模拟jq的addClass效果
-		function addClass(element,csName){
-			element.className+=' '+csName;
-		}
-		//js模拟jq的removeClass效果
-		function removeClass(element, csName) {
-			var reg = new RegExp('(\\s|^)' + csName + '(\\s|$)');
-			element.className = element.className.replace(reg, ' ');
-		}
- 
 
 	</script>
 </html>
