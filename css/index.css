@@ -27,20 +27,21 @@ ul.content_ul{
 	left:50%;
 	transform:translateX(-50%);
 	-webkit-transform:translateX(-50%);
-	width:95%;
+	width:auto;
+	max-width:100%;
 	height:auto;
 }
 li.content_list{
 	float:left;
-	width:98px;
-	height:100px;
+	width:50px;
+	height:50px;
 	font-size:25px;
 	font-weight:700;
-	line-height:100px;
+	line-height:50px;
 	text-align:center;
 	color:#fff;
 	background-color:#434A54;
-	border:1px solid #4FC1E9;
+	border:1px solid #1abc9c;
 	transition:all 0.5s;
 	cursor:pointer;
 }
@@ -55,17 +56,41 @@ li.content_list:hover{
 	transform:translateX(-50%);
 	width:50%;
 	height:50px;
-	background-color:#4FC1E9;
+	background-color:#434A54;
 	border-radius:5px;
+}
+.input:hover{
+	animation:input_hover 1s ease forwards;
+	animation-iteration-count: infinite;
+	animation-direction:alternate;
+	
+}
+@keyframes input_hover{
+	0{box-shadow:0px 0px 00px #434A54;}
+	100%{box-shadow:5px 5px 10px #434A54;}
+}
+#prompt{
+	position:absolute;
+	bottom:-110%;
+	left:50%;
+	transform:translateX(-45%);
+	padidng:0 20px;
+	height:50px;
+	font-size:20px;
+	font-weight:700;
+	line-height:50px;
+	text-align:center;
+	color:#434A54;
 }
 lable{
 	position:absolute;
-	top:-50px;
+	top:-60px;
 	left:50%;
 	transform:translateX(-50%);
 	font-size:25px;
 	font-weight:700;
 	line-height:50px;
+	color:#434A54;
 }
 #input_add{
 	display:inline-block;
@@ -75,7 +100,7 @@ lable{
 	transform:translateX(-50%);
 	width:98%;
 	height:40px;
-	font-size:35px;
+	font-size:25px;
 	line-height:40px;
 	background-color:#fff;
 	border:none;
@@ -84,7 +109,7 @@ lable{
 }
 ul.control{
 	position:absolute;
-	top:450px;
+	top:500px;
 	left:50%;
 	width:80%;
 	height:50px;
@@ -108,7 +133,7 @@ li.control_list{
 	transition:all 0.5s;
 	cursor:pointer;
 }
-li.control_list:hover{
+li.control_list:hover,li.content_list:hover{
 	box-shadow:5px 5px 10px #434A54;
 }
 .button_clickchange{
