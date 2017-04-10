@@ -15,10 +15,11 @@ a{
 	color:#000;
 	text-decoration:none;
 }
+/*显示列表部分*/
 .content{
 	position:relative;
 	margin:0 auto;
-	margin-top:20px;
+	margin-top:10px;
 	width:100%;
 	height:auto;
 }
@@ -27,31 +28,62 @@ ul.content_ul{
 	left:50%;
 	transform:translateX(-50%);
 	-webkit-transform:translateX(-50%);
-	width:auto;
-	max-width:100%;
-	height:auto;
+	width:1280px;
+	height:135px;
 }
 li.content_list{
+	display:inline-block;
 	float:left;
-	width:50px;
-	height:50px;
-	font-size:25px;
+	position:relative;
+	margin-top:10px;
+	margin-right:5px;
+	width:20px;
+	height:100%;
+	font-size:15px;
 	font-weight:700;
-	line-height:50px;
+	line-height:300px;
 	text-align:center;
-	color:#fff;
+	color:#434A54;
 	background-color:#434A54;
 	border:1px solid #1abc9c;
 	transition:all 0.5s;
 	cursor:pointer;
 }
+
+li.content_list:nth-child(1) span.content_list_num{
+	height:11%;
+}
+li.content_list:nth-child(2) span.content_list_num{
+	height:12%;
+}
+
+li.content_list:nth-child(3) span.content_list_num{
+	height:13%;
+}
+li.content_list:nth-child(4) span.content_list_num{
+	height:14%;
+}
+li.content_list:nth-child(5) span.content_list_num{
+	height:15%;
+}
+
 li.content_list:hover{
 	transform:scale(1.2);
 }
+span.content_list_num{
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	background-color:#1abc9c;
+	transition:all 0.8s;
+	z-index:1;
+}
+/*数字输入部分*/
 .input{
 	display:block;
 	position:absolute;
-	top:350px;
+	top:450px;
 	left:50%;
 	transform:translateX(-50%);
 	width:50%;
@@ -65,9 +97,49 @@ li.content_list:hover{
 	animation-direction:alternate;
 	
 }
+.input:hover span.line_left{
+	width:200px;
+	transform:scale(0.5);
+}
+.input:hover span.line_right{
+	width:200px;
+	transform:scale(0.5);
+}
 @keyframes input_hover{
 	0{box-shadow:0px 0px 00px #1abc9c;}
 	100%{box-shadow:0px 0px 15px #1abc9c;}
+}
+.l_line,.r_line{
+	display:block;
+	position:absolute;
+	top:-42px;
+	left:50%;
+	width:235px;
+	height:20px;
+	backround-color:#000;
+}
+span.line_left,span.line_right{
+	display:block;
+	position:absolute;
+	width:15px;
+	height:15px;
+	background-color:#434A54;
+	border-radius:10px;
+	transition:all 1s;
+}
+.l_line{
+	transform:translateX(-50%);
+}
+span.line_left{
+	right:220px;
+	transform:rotateZ(180deg);
+}
+.r_line{
+	transform:translateX(-50%);
+}
+span.line_right{
+	left:218px;
+	transform:rotateZ(-180deg);
 }
 #prompt{
 	position:absolute;
@@ -107,9 +179,10 @@ lable{
 	border-radius:3px;
 	outline:none;
 }
+/*指令选择部分*/
 ul.control{
 	position:absolute;
-	top:500px;
+	top:570px;
 	left:50%;
 	width:80%;
 	height:50px;
