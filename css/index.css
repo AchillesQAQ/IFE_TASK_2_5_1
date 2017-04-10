@@ -18,7 +18,7 @@ a{
 .content{
 	position:relative;
 	margin:0 auto;
-	margin-top:50px;
+	margin-top:20px;
 	width:100%;
 	height:auto;
 }
@@ -60,14 +60,14 @@ li.content_list:hover{
 	border-radius:5px;
 }
 .input:hover{
-	animation:input_hover 1s ease forwards;
+	animation:input_hover 0.9s forwards;
 	animation-iteration-count: infinite;
 	animation-direction:alternate;
 	
 }
 @keyframes input_hover{
-	0{box-shadow:0px 0px 00px #434A54;}
-	100%{box-shadow:5px 5px 10px #434A54;}
+	0{box-shadow:0px 0px 00px #1abc9c;}
+	100%{box-shadow:0px 0px 15px #1abc9c;}
 }
 #prompt{
 	position:absolute;
