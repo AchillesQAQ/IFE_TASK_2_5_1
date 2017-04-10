@@ -10,19 +10,19 @@
 		<div class="content">
 			<ul class="content_ul">
 				<li class="content_list">
-					11<span class="content_list_num"></span>
+					17<span class="content_list_num"></span>
 				</li>
 				<li class="content_list">
-					12<span class="content_list_num"></span>
+					52<span class="content_list_num"></span>
 				</li>
 				<li class="content_list">
-					13<span class="content_list_num"></span>
+					53<span class="content_list_num"></span>
 				</li>
 				<li class="content_list">
-					14<span class="content_list_num"></span>
+					24<span class="content_list_num"></span>
 				</li>
 				<li class="content_list">
-					15<span class="content_list_num"></span>
+					85<span class="content_list_num"></span>
 				</li>			
 			</ul>
 		</div>
@@ -41,6 +41,7 @@
 		<ul class="control">			
 			<li class="control_list">左侧入</li>
 			<li class="control_list">右侧入</li>
+			<li class="control_list">排序</li>
 			<li class="control_list">左侧出</li>
 			<li class="control_list">右侧出</li>
 		</ul>
@@ -56,10 +57,11 @@
 			//获取输入框内容
 			var input_value = document.getElementById("input_add");
 			//获取操作按钮
-			var leftIn = document.getElementsByClassName("control_list")[0];
-			var rightIn = document.getElementsByClassName("control_list")[1];
-			var leftOut = document.getElementsByClassName("control_list")[2];
-			var rightOut = document.getElementsByClassName("control_list")[3];	
+			var leftIn = document.getElementsByClassName("control_list")[0];//左侧入
+			var rightIn = document.getElementsByClassName("control_list")[1];//右侧入
+			var list_sort = document.getElementsByClassName("control_list")[2];//排序
+			var leftOut = document.getElementsByClassName("control_list")[3];//左侧出
+			var rightOut = document.getElementsByClassName("control_list")[4];	//右侧出
 			//获取提示信息
 			var span_content = document.getElementById("prompt");
 			//实时监控输入框
@@ -85,8 +87,7 @@
 							new_item.className = "content_list";
 							new_item.innerHTML = input_content + "<span class='content_list_num'></span>";
 							ul_list.insertBefore(new_item,ul_list.childNodes[0]);
-							//重新获取列表长度
-							var newlist_num = document.getElementsByClassName("content_list").length;
+							//将输入的值对应高度比例显示
 							ul_list.childNodes[0].children[0].style.height = input_content + "%";
 							input_value.value = "";//清空输入框							
 						}else{
@@ -117,8 +118,7 @@
 						//队列元素数量最多限制为60个，当超过60个时，添加元素时alert出提示					
 						if(document.getElementsByClassName("content_list").length <= 60){
 							ul_list.innerHTML += "<li class='content_list'>" + input_content + "<span class='content_list_num'></span></li>";
-							//重新获取列表长度
-							var newlist_num = document.getElementsByClassName("content_list").length;
+							//将输入的值对应高度比例显示
 							ul_list.lastChild.lastChild.style.height = input_content + "%";
 							input_value.value = "";							
 						}else{
@@ -148,6 +148,10 @@
 			rightOut.onclick = function(){	
 				alert(ul_list.children[li_list.length-1].innerText);
 				ul_list.removeChild(ul_list.children[li_list.length-1]);			
+			}
+			//循环赋予初始列表项显示高度比例
+			for(var i = 0;i < content_list_length;i++){
+				ul_list.children[i].children[0].style.height = ul_list.children[i].innerText+ "%";
 			}
 
 			//点击指定元素则被点击元素被删除（运用事件委托法）
