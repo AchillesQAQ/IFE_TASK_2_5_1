@@ -89,7 +89,7 @@
 							ul_list.insertBefore(new_item,ul_list.childNodes[0]);
 							//将输入的值对应高度比例显示
 							ul_list.childNodes[0].children[0].style.height = input_content + "%";
-							input_value.value = "";//清空输入框							
+							//input_value.value = "";//清空输入框							
 						}else{
 							alert("最多60个，不能再多了！");
 							input_value.value = "";//清空输入框
@@ -105,7 +105,7 @@
 					alert("请输入10-100之间的数字！");
 				}
 				//提示信息内容复位
-				span_content.innerHTML = "请输入10-100之间的数字！";				
+				//span_content.innerHTML = "请输入10-100之间的数字！";				
 			}
 			//右侧入
 			rightIn.onclick = function(){
@@ -120,7 +120,7 @@
 							ul_list.innerHTML += "<li class='content_list'>" + input_content + "<span class='content_list_num'></span></li>";
 							//将输入的值对应高度比例显示
 							ul_list.lastChild.lastChild.style.height = input_content + "%";
-							input_value.value = "";							
+							//input_value.value = "";							
 						}else{
 							alert("最多60个，不能再多了！");
 							input_value.value = "";//清空输入框
@@ -137,7 +137,7 @@
 					alert("请输入10-100之间的数字！");
 				}
 				//提示信息内容复位
-				span_content.innerHTML = "请输入10-100之间的数字！";				
+				//span_content.innerHTML = "请输入10-100之间的数字！";				
 			}
 			//左侧出
 			leftOut.onclick = function(){	
@@ -167,7 +167,25 @@
 			}
 			
 			
-		}		
+		}
+		//插入排序法
+        function insert_sort(arr) {
+			//若数组中只有一个元素则无需排序直接返回
+            if(arr.length <= 1) {
+                return arr;
+            }
+			//从前两个比较开始，小的向前移动，每次j循环向后比较一位，i循环增加比较位数
+            for(var i=0; i<arr.length; i++) {
+                for(var j=i-1; j>=0; j--) {
+                if(arr[j+1] < arr[j]) {
+                    var temp = arr[j+1];
+                    arr[j+1] = arr[j];
+                    arr[j] = temp;
+                    }
+                }
+            }
+            return arr;
+        }		
 
 	</script>
 </html>
