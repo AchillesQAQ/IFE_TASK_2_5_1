@@ -10,6 +10,7 @@ body{
 	font-size:12px;
 	font-family:"Microsoft YaHei";
 	background-color:#fff;
+	overflow-x:hidden;
 }
 a{
 	color:#000;
