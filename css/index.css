@@ -17,25 +17,30 @@ a{
 }
 /*显示列表部分*/
 .content{
-	position:relative;
-	margin:0 auto;
-	margin-top:10px;
-	width:100%;
+	position:absolute;
+	top:0;
+	left:50%;
+	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	-o-transform:translateX(-50%);
+	width:200%;
 	height:auto;
 }
 ul.content_ul{
 	position:absolute;
+	top:20px;
 	left:50%;
 	transform:translateX(-50%);
 	-webkit-transform:translateX(-50%);
-	width:1280px;
+	width:auto;
 	height:135px;
+	text-align:center;
 }
 li.content_list{
 	display:inline-block;
 	float:left;
 	position:relative;
-	margin-top:10px;
+	margin-top:35px;
 	margin-right:5px;
 	width:20px;
 	height:100%;
@@ -49,24 +54,6 @@ li.content_list{
 	transition:all 0.5s;
 	cursor:pointer;
 }
-
-li.content_list:nth-child(1) span.content_list_num{
-	height:11%;
-}
-li.content_list:nth-child(2) span.content_list_num{
-	height:12%;
-}
-
-li.content_list:nth-child(3) span.content_list_num{
-	height:13%;
-}
-li.content_list:nth-child(4) span.content_list_num{
-	height:14%;
-}
-li.content_list:nth-child(5) span.content_list_num{
-	height:15%;
-}
-
 li.content_list:hover{
 	transform:scale(1.2);
 }
@@ -75,6 +62,7 @@ span.content_list_num{
 	bottom:0;
 	left:0;
 	width:100%;
+	height:0;
 	background-color:#1abc9c;
 	transition:all 0.8s;
 	z-index:1;
@@ -138,7 +126,7 @@ span.line_left{
 	transform:translateX(-50%);
 }
 span.line_right{
-	left:218px;
+	left:220px;
 	transform:rotateZ(-180deg);
 }
 #prompt{
@@ -154,7 +142,7 @@ span.line_right{
 	text-align:center;
 	color:#434A54;
 }
-lable{
+h3.input_title{
 	position:absolute;
 	top:-60px;
 	left:50%;
@@ -194,7 +182,7 @@ li.control_list{
 	float:left;
 	margin:0 auto;
 	margin-right:5px;
-	width:calc(25% - 5px);
+	width:calc(20% - 5px);
 	height:50px;
 	font-size:25px;
 	font-weight:700;

@@ -10,7 +10,7 @@
 		<div class="content">
 			<ul class="content_ul">
 				<li class="content_list">
-					17<span class="content_list_num"></span>
+					90<span class="content_list_num"></span>
 				</li>
 				<li class="content_list">
 					52<span class="content_list_num"></span>
@@ -23,6 +23,36 @@
 				</li>
 				<li class="content_list">
 					85<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					77<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					58<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					43<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					28<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					89<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					99<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					16<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					56<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					33<span class="content_list_num"></span>
+				</li>
+				<li class="content_list">
+					39<span class="content_list_num"></span>
 				</li>			
 			</ul>
 		</div>
@@ -34,7 +64,7 @@
 			<div class="r_line">
 				<span class="line_right"></span>
 			</div>			
-			<lable for="input_add">请开始你的表演</lable>
+			<h3 class="input_title">请开始你的表演</h3>
 			<input type="text" name="input_add" id="input_add" placeholder="输入范围10-100的数字，队列元素最多60个" /><span id="prompt">请输入10-100之间的数字！</span>
 		</div>
 		<!--指令选择部分-->
@@ -150,7 +180,7 @@
 				ul_list.removeChild(ul_list.children[li_list.length-1]);			
 			}
 			//循环赋予初始列表项显示高度比例
-			for(var i = 0;i < content_list_length;i++){
+			for(let i = 0;i < content_list_length;i++){
 				ul_list.children[i].children[0].style.height = ul_list.children[i].innerText+ "%";
 			}
 
@@ -165,7 +195,30 @@
 					target.parentNode.parentNode.removeChild(target.parentNode);
 				}
 			}
-			
+			//点击排序
+			list_sort.onclick = function(){
+				//实时获取获取当前数据列表长度
+				var li_listbefore_length = li_list.length;
+				//声明空数组用于存储列表数据
+				var li_arr = new Array();
+				//循环获取列表数据
+				for(let i = 0;i < li_listbefore_length;i++){
+					var x = ul_list.children[i].innerText;
+					li_arr.push(x);					
+				}
+				//调用函数排序
+				var li_arr_sorted = insert_sort(li_arr);
+				//排序结构分配可视化
+				for(let i = 0;i < li_listbefore_length;i++){
+					ul_list.children[i].innerText = li_arr_sorted[i];
+					ul_list.children[i].innerHTML += "<span class='content_list_num'></span>";
+					//数值高度变化可视化
+					setTimeout(function(){
+						ul_list.children[i].children[0].style.height = li_arr_sorted[i] + "%";
+					},100);
+					
+				}
+			}
 			
 		}
 		//插入排序法
