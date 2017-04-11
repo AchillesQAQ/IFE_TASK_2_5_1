@@ -71,7 +71,8 @@
 		<ul class="control">			
 			<li class="control_list">左侧入</li>
 			<li class="control_list">右侧入</li>
-			<li class="control_list">排序</li>
+			<li class="control_list">正序排序</li>
+			<li class="control_list">逆序排序</li>
 			<li class="control_list">左侧出</li>
 			<li class="control_list">右侧出</li>
 		</ul>
@@ -89,9 +90,10 @@
 			//获取操作按钮
 			var leftIn = document.getElementsByClassName("control_list")[0];//左侧入
 			var rightIn = document.getElementsByClassName("control_list")[1];//右侧入
-			var list_sort = document.getElementsByClassName("control_list")[2];//排序
-			var leftOut = document.getElementsByClassName("control_list")[3];//左侧出
-			var rightOut = document.getElementsByClassName("control_list")[4];	//右侧出
+			var list_sort_l = document.getElementsByClassName("control_list")[2];//正序
+			var list_sort_r = document.getElementsByClassName("control_list")[3];//逆序
+			var leftOut = document.getElementsByClassName("control_list")[4];//左侧出
+			var rightOut = document.getElementsByClassName("control_list")[5];	//右侧出
 			//获取提示信息
 			var span_content = document.getElementById("prompt");
 			//实时监控输入框
@@ -195,8 +197,8 @@
 					target.parentNode.parentNode.removeChild(target.parentNode);
 				}
 			}
-			//点击排序
-			list_sort.onclick = function(){
+			//点击正序排序
+			list_sort_l.onclick = function(){
 				//实时获取获取当前数据列表长度
 				var li_listbefore_length = li_list.length;
 				//声明空数组用于存储列表数据
@@ -207,7 +209,31 @@
 					li_arr.push(x);					
 				}
 				//调用函数排序
-				var li_arr_sorted = insert_sort(li_arr);
+				var li_arr_sorted = insert_sort_l(li_arr);
+				//排序结构分配可视化
+				for(let i = 0;i < li_listbefore_length;i++){
+					ul_list.children[i].innerText = li_arr_sorted[i];
+					ul_list.children[i].innerHTML += "<span class='content_list_num'></span>";
+					//数值高度变化可视化
+					setTimeout(function(){
+						ul_list.children[i].children[0].style.height = li_arr_sorted[i] + "%";
+					},100);
+					
+				}
+			}
+			//点击逆序排序
+			list_sort_r.onclick = function(){
+				//实时获取获取当前数据列表长度
+				var li_listbefore_length = li_list.length;
+				//声明空数组用于存储列表数据
+				var li_arr = new Array();
+				//循环获取列表数据
+				for(let i = 0;i < li_listbefore_length;i++){
+					var x = ul_list.children[i].innerText;
+					li_arr.push(x);					
+				}
+				//调用函数排序
+				var li_arr_sorted = insert_sort_r(li_arr);
 				//排序结构分配可视化
 				for(let i = 0;i < li_listbefore_length;i++){
 					ul_list.children[i].innerText = li_arr_sorted[i];
@@ -221,8 +247,8 @@
 			}
 			
 		}
-		//插入排序法
-        function insert_sort(arr) {
+		//插入排序法(正序)
+        function insert_sort_l(arr) {
 			//若数组中只有一个元素则无需排序直接返回
             if(arr.length <= 1) {
                 return arr;
@@ -231,6 +257,24 @@
             for(var i=0; i<arr.length; i++) {
                 for(var j=i-1; j>=0; j--) {
                 if(arr[j+1] < arr[j]) {
+                    var temp = arr[j+1];
+                    arr[j+1] = arr[j];
+                    arr[j] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+		//插入排序法(逆序)
+        function insert_sort_r(arr) {
+			//若数组中只有一个元素则无需排序直接返回
+            if(arr.length <= 1) {
+                return arr;
+            }
+			//从前两个比较开始，小的向前移动，每次j循环向后比较一位，i循环增加比较位数
+            for(var i=0; i<arr.length; i++) {
+                for(var j=i-1; j>=0; j--) {
+                if(arr[j+1] > arr[j]) {
                     var temp = arr[j+1];
                     arr[j+1] = arr[j];
                     arr[j] = temp;
